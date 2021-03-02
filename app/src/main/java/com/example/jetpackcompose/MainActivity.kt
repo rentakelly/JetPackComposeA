@@ -18,27 +18,34 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            JetPackComposeTheme {
-                // A surface container using the 'background' color from the theme
-                Surface(color = MaterialTheme.colors.background) {
-                    Greeting("Android")
-                }
+            MeuApp{
+                Greeting("Android")
             }
         }
     }
 }
 
 @Composable
-fun Greeting(name: String) {
-    Surface(color = Color.Red){
-        Text(text = "Hello $name!", modifier = Modifier.padding(24.dp))
+fun MeuApp(content: @Composable () -> Unit) {
+    JetPackComposeTheme {
+        Surface(color = Color.Red) {
+            content()
+        }
     }
 }
 
-@Preview(showBackground = true)
+@Composable
+fun Greeting(name: String) {
+        Text(text = "Hello $name!", modifier = Modifier.padding(24.dp))
+}
+
+@Preview//(showBackground = true)
 @Composable
 fun DefaultPreview() {
-    JetPackComposeTheme {
+    MeuApp{
         Greeting("Android")
     }
+//    JetPackComposeTheme {
+//        Greeting("Android")
+//    }
 }
